@@ -205,6 +205,9 @@
 - (void)setCurrentActionType:(MJChatBarActionType)actionType
 {
     _actionType = actionType;
+    if ([self.delegate respondsToSelector:@selector(changeActionType:)]) {
+        [self.delegate changeActionType:_actionType];
+    }
 }
 
 - (void)cancleInputState

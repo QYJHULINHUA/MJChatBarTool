@@ -13,6 +13,7 @@
 
 @property (nonatomic ,strong)MJChatBarInputView *inputBar;
 @property (nonatomic ,assign)CGFloat keyBoardHeight;
+@property (nonatomic ,assign)CGFloat explangHeight;
 
 @end
 
@@ -37,10 +38,48 @@
     [self layerBarFrame];
 }
 
+- (void)changeActionType:(MJChatBarActionType)type
+{
+    [self layerBarFrame];
+    
+}
+
 - (void)layerBarFrame
 {
     CGFloat ori_x = 0;
-    CGFloat ori_y = GJCFSystemScreenHeight - self.barToolHeight + 216 - _keyBoardHeight;
+    if (_keyBoardHeight > 0 && _explangHeight>0) {
+        _keyBoardHeight = 0;
+    }
+    switch (_inputBar.actionType) {
+        case MJChatInputBarActionType_None:
+            _keyBoardHeight = 0;
+            _explangHeight = 0;
+            break;
+            
+        case MJChatInputBarActionType_Audio:
+            _keyBoardHeight = 0;
+            _explangHeight = 0;
+            break;
+            
+        case MJChatInputBarActionType_Emoji:
+            _keyBoardHeight = 0;
+            _explangHeight = 216;
+            break;
+            
+        case MJChatInputBarActionType_Text:
+            _explangHeight = 0;
+            break;
+            
+        case MJChatInputBarActionType_Panel:
+            _keyBoardHeight = 0;
+            _explangHeight = 216;
+            break;
+            
+        default:
+            break;
+    }
+    
+    CGFloat ori_y = GJCFSystemScreenHeight - self.barToolHeight + 216 - _keyBoardHeight -_explangHeight;
     CGFloat size_w = GJCFSystemScreenWidth;
     CGFloat size_h = self.barToolHeight;
     CGRect newFrame = (CGRect){ori_x,ori_y,size_w,size_h};
@@ -61,7 +100,6 @@
     CGRect keyboardEndFrame = [noti.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     _keyBoardHeight = keyboardEndFrame.size.height;
     [self layerBarFrame];
-
 }
 
 - (void)UIKeyboardWillHidden:(NSNotification *)noti
@@ -77,7 +115,6 @@
 - (void)dealloc
 {
     [self removeAllObserver];
-    
 }
 
 - (void)regestObserver//注册通知

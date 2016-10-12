@@ -14,6 +14,7 @@
 @protocol MJChatBarInputViewDelegate <NSObject>
 
 - (void)chatBarFrameChage;
+- (void)changeActionType:(MJChatBarActionType)type;
 
 @end
 

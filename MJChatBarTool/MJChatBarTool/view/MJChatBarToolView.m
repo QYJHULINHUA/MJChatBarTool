@@ -7,13 +7,14 @@
 //
 
 #import "MJChatBarToolView.h"
-
+#import "MJChatEmojiView.h"
 
 @interface MJChatBarToolView ()<MJChatBarInputViewDelegate>
 
 @property (nonatomic ,strong)MJChatBarInputView *inputBar;
 @property (nonatomic ,assign)CGFloat keyBoardHeight;
 @property (nonatomic ,assign)CGFloat explangHeight;
+@property (nonatomic,strong)MJChatEmojiView *emojiView;
 
 @end
 
@@ -29,18 +30,43 @@
         [self addSubview:self.inputBar];
         [self regestObserver];//注册相关通知
         
+        
+        
     }
     return self;
 }
 
+- (MJChatEmojiView*)emojiView
+{
+    if (!_emojiView) {
+        _emojiView = [[MJChatEmojiView alloc] initWithFrame:CGRectMake(0, 0, GJCFSystemScreenWidth, 216)];
+        _emojiView.hidden = YES;
+        [self addSubview:_emojiView];
+        
+    }
+    _emojiView.frame = CGRectMake(0, _inputBar.barHeight, GJCFSystemScreenWidth, 216);
+    return _emojiView;
+}
+
 - (void)chatBarFrameChage
 {
-    [self layerBarFrame];
+    [UIView animateWithDuration:0.2f animations:^{
+        [self layerBarFrame];
+    }];
+    
 }
 
 - (void)changeActionType:(MJChatBarActionType)type
 {
-    [self layerBarFrame];
+    [UIView animateWithDuration:0.2f animations:^{
+        [self layerBarFrame];
+    }];
+    if (type == MJChatInputBarActionType_Emoji) {
+        self.emojiView.hidden = NO;
+    }else
+    {
+         self.emojiView.hidden = YES;
+    }
     
 }
 
@@ -107,10 +133,6 @@
     _keyBoardHeight = 0;
     [self layerBarFrame];
 }
-
-
-
-
 
 - (void)dealloc
 {

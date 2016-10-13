@@ -58,5 +58,10 @@ typedef NS_ENUM(NSUInteger, MJChatInputExpandEmojiType) {
 + (BOOL)iPhone6Device;
 + (BOOL)iPhone6PlusDevice;
 + (BOOL)stringIsAllWhiteSpace:(NSString *)string;//检查字符串是否是空格
++ (UIImage *)imageForColor:(UIColor*)aColor withSize:(CGSize)aSize;//根据颜色绘制图片
+
++ (BOOL)stringIsNull:(NSString *)string;
+
++ (NSString *)mainBundlePath:(NSString*)fileName;
 
 @end

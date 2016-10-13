@@ -44,6 +44,8 @@
 
 - (void)resignInputTextView;//注销第一响应
 
+- (void)hiddenRecordButton;
+
 
 
 

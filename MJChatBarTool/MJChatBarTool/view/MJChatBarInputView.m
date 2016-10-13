@@ -12,6 +12,7 @@
 
 
 
+
 @interface MJChatBarInputView ()<MJChatInput_TextViewDelegate>
 
 @property (nonatomic,strong)MJChatInputItem *recordAudioBarItem;
@@ -21,6 +22,8 @@
 @property (nonatomic,strong)MJChatInputItem *openPanelBarItem;
 
 @property (nonatomic,strong)MJChatInput_TextView *inputTextView;
+
+
 
 @end
 
@@ -38,6 +41,8 @@
     }
     return self;
 }
+
+
 
 
 
@@ -180,6 +185,9 @@
         _openPanelBarItem.itemIsSelect = NO;
         if (item.itemIsSelect) {
             [self setCurrentActionType:MJChatInputBarActionType_Emoji];
+            if (_inputTextView.recordState == YES) {
+                [_inputTextView hiddenRecordButton];
+            }
             [_inputTextView resignInputTextView];
         }else
         {
@@ -193,6 +201,9 @@
         _emojiBarItem.itemIsSelect = NO;
         if (item.itemIsSelect) {
             [self setCurrentActionType:MJChatInputBarActionType_Panel];
+            if (_inputTextView.recordState == YES) {
+                [_inputTextView hiddenRecordButton];
+            }
             [_inputTextView resignInputTextView];
         }else
         {
@@ -226,11 +237,11 @@
             break;
             
         case MJChatInputBarActionType_Emoji:
-            NSLog(@"a");
+            _emojiBarItem.itemIsSelect = NO;
             break;
             
         case MJChatInputBarActionType_Panel:
-            NSLog(@"a");
+            _emojiBarItem.itemIsSelect = NO;
             break;
             
         default:

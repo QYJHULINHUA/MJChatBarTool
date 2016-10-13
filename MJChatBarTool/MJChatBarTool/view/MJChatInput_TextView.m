@@ -232,6 +232,12 @@
     return YES;
 }
 
+- (void)hiddenRecordButton
+{
+    recordButton.hidden = YES;
+    inputTextView.hidden = NO;
+
+}
 - (void)setRecordState:(BOOL)recordState
 {
     _recordState = recordState;

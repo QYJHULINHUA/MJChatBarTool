@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D0C94FD1DAF5FC0002F2DD9 /* MJChatEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C94FC1DAF5FC0002F2DD9 /* MJChatEmojiView.m */; };
+		9D0C95001DAF6867002F2DD9 /* MJChatEmojiBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C94FF1DAF6867002F2DD9 /* MJChatEmojiBar.m */; };
+		9D0C95031DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C95021DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m */; };
 		9D2A48431DA8C22E00B38D3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A48421DA8C22E00B38D3A /* main.m */; };
 		9D2A48461DA8C22E00B38D3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A48451DA8C22E00B38D3A /* AppDelegate.m */; };
 		9D2A48491DA8C22E00B38D3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A48481DA8C22E00B38D3A /* ViewController.m */; };
@@ -208,6 +211,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D0C94FB1DAF5FC0002F2DD9 /* MJChatEmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJChatEmojiView.h; sourceTree = "<group>"; };
+		9D0C94FC1DAF5FC0002F2DD9 /* MJChatEmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChatEmojiView.m; sourceTree = "<group>"; };
+		9D0C94FE1DAF6867002F2DD9 /* MJChatEmojiBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJChatEmojiBar.h; sourceTree = "<group>"; };
+		9D0C94FF1DAF6867002F2DD9 /* MJChatEmojiBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChatEmojiBar.m; sourceTree = "<group>"; };
+		9D0C95011DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJhatInputExpandEmojiPanelPageItem.h; sourceTree = "<group>"; };
+		9D0C95021DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJhatInputExpandEmojiPanelPageItem.m; sourceTree = "<group>"; };
 		9D2A483E1DA8C22E00B38D3A /* MJChatBarTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJChatBarTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2A48421DA8C22E00B38D3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9D2A48441DA8C22E00B38D3A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -558,10 +567,16 @@
 		9D2A48771DA8C30A00B38D3A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				9D0C95011DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.h */,
+				9D0C95021DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m */,
 				9D2A48841DA8E1F100B38D3A /* MJChatInputItem.h */,
 				9D2A48851DA8E1F100B38D3A /* MJChatInputItem.m */,
 				9D2A487E1DA8C84100B38D3A /* MJChatBarToolView.h */,
 				9D2A487F1DA8C84100B38D3A /* MJChatBarToolView.m */,
+				9D0C94FE1DAF6867002F2DD9 /* MJChatEmojiBar.h */,
+				9D0C94FF1DAF6867002F2DD9 /* MJChatEmojiBar.m */,
+				9D0C94FB1DAF5FC0002F2DD9 /* MJChatEmojiView.h */,
+				9D0C94FC1DAF5FC0002F2DD9 /* MJChatEmojiView.m */,
 				9D2A48811DA8D8D200B38D3A /* MJChatBarInputView.h */,
 				9D2A48821DA8D8D200B38D3A /* MJChatBarInputView.m */,
 				9D2A48871DA8E33B00B38D3A /* MJChatInput_TextView.h */,
@@ -1051,11 +1066,14 @@
 				9D2A48491DA8C22E00B38D3A /* ViewController.m in Sources */,
 				9D2A49E91DAC830000B38D3A /* MJCoreTextParagraphStyle.m in Sources */,
 				9D2A49FB1DAC8B1C00B38D3A /* MJCoreTextRun.m in Sources */,
+				9D0C95031DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m in Sources */,
 				9D2A48831DA8D8D200B38D3A /* MJChatBarInputView.m in Sources */,
 				9D2A49C51DAB355F00B38D3A /* MJChatAudioRecord.m in Sources */,
 				9D2A49C81DAB362900B38D3A /* MJChatAudioRecordSetting.m in Sources */,
 				9D2A48461DA8C22E00B38D3A /* AppDelegate.m in Sources */,
+				9D0C95001DAF6867002F2DD9 /* MJChatEmojiBar.m in Sources */,
 				9D2A48861DA8E1F100B38D3A /* MJChatInputItem.m in Sources */,
+				9D0C94FD1DAF5FC0002F2DD9 /* MJChatEmojiView.m in Sources */,
 				9D2A48891DA8E33B00B38D3A /* MJChatInput_TextView.m in Sources */,
 				9D2A49D71DAC724800B38D3A /* MJChatInputRecordAudioTipView.m in Sources */,
 				9D2A487A1DA8C33A00B38D3A /* MJChatBarToolModel.m in Sources */,

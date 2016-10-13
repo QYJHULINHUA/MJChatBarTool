@@ -85,4 +85,58 @@
     }
 }
 
+/* 根据颜色创建图片 */
++ (UIImage *)imageForColor:(UIColor*)aColor withSize:(CGSize)aSize
+{
+    if (aColor && [aColor isKindOfClass:[UIColor class]]) {
+        CGRect rect = CGRectMake(0, 0, aSize.width, aSize.height);
+        
+        UIGraphicsBeginImageContext(rect.size);
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        CGContextSetFillColorWithColor(context, aColor.CGColor);
+        
+        CGContextFillRect(context, rect);
+        
+        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        return img;
+    }
+    else
+    {
+        return nil;
+    }
+    
+    
+}
+
++ (NSString *)mainBundlePath:(NSString*)fileName
+{
+    if ([self stringIsNull:fileName]) {
+        return nil;
+    }
+    NSArray *fileArray = [fileName componentsSeparatedByString:@"."];
+    if (fileArray.count < 2) {
+        return nil;
+    }
+    return [[NSBundle mainBundle]  pathForResource:fileArray[0] ofType:fileArray[1]];
+}
+
++ (BOOL)stringIsNull:(NSString *)string
+{
+    if (![string isKindOfClass:[NSString class]]) {
+        return YES;
+    }
+    
+    if (!string || [string isKindOfClass:[NSNull class]] || string.length == 0 || [string isEqualToString:@""]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+
 @end

@@ -72,52 +72,35 @@
 
 - (void)deleteLastEmoji
 {
-//    if(GJCFStringIsNull(self.textView.text))
-//    {
-//        return;
-//    }
-//    
-//    if ([[self.textView.text substringFromIndex:self.textView.text.length-1] isEqualToString:@"]"]) {
-//        
-//        NSInteger lastCharCursor = self.textView.text.length - 1;
-//        
-//        NSInteger innerCharCount = 0;
-//        while (lastCharCursor >= 0) {
-//            
-//            NSString * lastChar = [self.textView.text substringWithRange:NSMakeRange(lastCharCursor, 1)];
-//            
-//            if ([lastChar isEqualToString:@"["]) {
-//                
-//                break;
-//                
-//            }
-//            lastCharCursor--;
-//            innerCharCount ++;
-//        }
-//        
-//        if (innerCharCount > 4) {
-//            
-//            [self.textView deleteBackward];
-//            
-//            NSString *formateNoti = [GJGCChatInputConst panelNoti:GJGCChatInputTextViewContentChangeNoti formateWithIdentifier:self.panelIdentifier];
-//            [GJCFNotificationCenter postNotificationName:formateNoti object:self.textView.text];
-//            
-//            return;
-//        }
-//        
-//        self.textView.text = [self.textView.text substringToIndex:lastCharCursor];
-//        
-//        NSString *formateNoti = [GJGCChatInputConst panelNoti:GJGCChatInputTextViewContentChangeNoti formateWithIdentifier:self.panelIdentifier];
-//        [GJCFNotificationCenter postNotificationName:formateNoti object:self.textView.text];
-//        
-//    }else{
-//        
-//        [self.textView deleteBackward];
-//        
-//        NSString *formateNoti = [GJGCChatInputConst panelNoti:GJGCChatInputTextViewContentChangeNoti formateWithIdentifier:self.panelIdentifier];
-//        [GJCFNotificationCenter postNotificationName:formateNoti object:self.textView.text];
-//        
-//    }
+    if ([MJChatBarToolModel stringIsNull:inputTextView.text]) {
+        return ;
+    }
+    if ([[inputTextView.text substringFromIndex:inputTextView.text.length-1] isEqualToString:@"]"]) {
+        
+        NSInteger lastCharCursor = inputTextView.text.length - 1;
+        
+        NSInteger innerCharCount = 0;
+        while (lastCharCursor >= 0) {
+            
+            NSString * lastChar = [inputTextView.text substringWithRange:NSMakeRange(lastCharCursor, 1)];
+            
+            if ([lastChar isEqualToString:@"["]) {
+                break;
+            }
+            lastCharCursor--;
+            innerCharCount ++;
+        }
+        
+        if (innerCharCount > 4) {
+            [inputTextView deleteBackward];//删除系统键盘表情
+            return;
+        }
+        inputTextView.text = [inputTextView.text substringToIndex:lastCharCursor];
+    }
+    else
+    {
+        [inputTextView deleteBackward];
+    }
 }
 
 - (void)observeEmojiPanelChooseEmojiNoti:(NSNotification *)noti

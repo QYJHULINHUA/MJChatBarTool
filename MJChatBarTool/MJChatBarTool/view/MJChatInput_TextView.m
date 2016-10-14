@@ -68,6 +68,10 @@
     NSString *simbleEmojiNoti = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiSambleNoti formateWihtIndentifier:indentifiName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeEmojiPanelChooseEmojiNoti:) name:simbleEmojiNoti object:nil];
     
+    NSString *emojiSendNoti = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiSendfNoti formateWihtIndentifier:indentifiName];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeEmojiPanelChooseEmojiNoti:) name:emojiSendNoti object:nil];
+    
+    
 }
 
 - (void)deleteLastEmoji
@@ -108,7 +112,11 @@
     NSString *emoji = noti.object;
     if ([emoji isEqualToString:@"删除"]) {
         [self deleteLastEmoji];
-    }else
+    }else if ([emoji isEqualToString:@"MJ_发送"])
+    {
+        [self senMsg];
+    }
+    else
     {
        inputTextView.text = [NSString stringWithFormat:@"%@%@",inputTextView.text,emoji];
     }
@@ -166,7 +174,16 @@
     {
         [self removeRecordTipView];
         [self.audioRecord finshishRecord];
+        MJChatAudioRecordModel *audioModel = [self.audioRecord getRecordAudioFile];
+        [self sendVedio:audioModel];
     }
+}
+
+- (void)sendVedio:(MJChatAudioRecordModel*)model
+{
+    
+    NSString *notifiString = [MJChatBarNotificationCenter getNofitName:MJChatBarRecordSoundNoti formateWihtIndentifier:self.indentifiName];
+    MJNotificationPostObj(notifiString, model, nil);
 }
 
 #pragma mark - 录音按钮触摸检测
@@ -279,17 +296,21 @@
             return NO;
         }else
         {
-            textViewTempString = nil;
-            textView.text = nil;
-            if ([self.delegate respondsToSelector:@selector(sendMsg:isRecordState:)]) {
-                [self.delegate sendMsg:textView.text isRecordState:NO];
-            }
-            [self updateTextView:textView];
+            [self senMsg];
             return NO;
         }
         
     }
     return YES;
+}
+
+- (void)senMsg
+{
+    NSString *notifiStr = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiTextfNoti formateWihtIndentifier:_indentifiName];
+    MJNotificationPostObj(notifiStr, inputTextView.text, nil);
+    textViewTempString = nil;
+    inputTextView.text = nil;
+    [self updateTextView:inputTextView];
 }
 
 - (void)hiddenRecordButton

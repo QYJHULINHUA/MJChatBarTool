@@ -15,7 +15,6 @@
 
 - (void)chatInputStyle:(BOOL)isRecordState;
 - (void)changeHeight:(CGFloat)changeH;
-- (void)sendMsg:(id)msgContent isRecordState:(BOOL)isRecord;
 - (void)recordActionCallBack:(MJChatRecordState)recordState;
 
 

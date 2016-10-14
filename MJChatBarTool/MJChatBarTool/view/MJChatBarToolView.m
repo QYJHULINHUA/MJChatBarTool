@@ -8,6 +8,8 @@
 
 #import "MJChatBarToolView.h"
 #import "MJChatEmojiView.h"
+#import "MJChatBarNotificationCenter.h"
+
 
 @interface MJChatBarToolView ()<MJChatBarInputViewDelegate>
 
@@ -32,10 +34,58 @@
         _indentifiName = [MJChatBarToolModel currentTimeStamp];
         _inputBar.indentifiName = _indentifiName;
         
-        
+        [self addObserverGifNoti];
+        [self addObserverRecord];
+        [self addObserverTextNoti];
         
     }
     return self;
+}
+
+//gif表情通知
+- (void)addObserverGifNoti
+{
+    NSString *gifEmojiNoti = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiGifNoti formateWihtIndentifier:_indentifiName];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeGIFEmojiPanelChooseEmojiNoti:) name:gifEmojiNoti object:nil];
+}
+
+//语音通知
+- (void)addObserverRecord
+{
+    NSString *recodNoti = [MJChatBarNotificationCenter getNofitName:MJChatBarRecordSoundNoti formateWihtIndentifier:_indentifiName];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observerRecordNotif:) name:recodNoti object:nil];
+}
+
+//文本通知
+- (void)addObserverTextNoti
+{
+    NSString *recodNoti = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiTextfNoti formateWihtIndentifier:_indentifiName];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observerTextNoti:) name:recodNoti object:nil];
+}
+
+- (void)observerTextNoti:(NSNotification *)noti
+{
+    NSString *strtt = noti.object;
+    NSLog(@"文本通知->  %@",strtt);
+    if ([self.delegate respondsToSelector:@selector(msgType:msgBody:)]) {
+        [self.delegate msgType:MJChatBarMsgType_Text msgBody:strtt];
+    }
+}
+
+- (void)observeGIFEmojiPanelChooseEmojiNoti:(NSNotification *)noti
+{
+    NSString *strtt = noti.object;
+    if ([self.delegate respondsToSelector:@selector(msgType:msgBody:)]) {
+        [self.delegate msgType:MJChatBarMsgType_GIFEmoji msgBody:strtt];
+    }
+}
+
+- (void)observerRecordNotif:(NSNotification *)notif
+{
+    MJChatAudioRecordModel *model = notif.object;
+    if ([self.delegate respondsToSelector:@selector(msgType:msgBody:)]) {
+        [self.delegate msgType:MJChatBarMsgType_Audio msgBody:model];
+    }
 }
 
 - (MJChatEmojiView*)emojiView
@@ -144,14 +194,15 @@
 
 - (void)regestObserver//注册通知
 {
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UIKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UIKeyboardWillHidden:) name:UIKeyboardWillHideNotification object:nil];//监视键盘尺寸
 }
 
 - (void)removeAllObserver//移除所有通知
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 - (CGFloat)barToolHeight

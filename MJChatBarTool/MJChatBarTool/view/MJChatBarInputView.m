@@ -146,10 +146,6 @@
     
 }
 
-- (void)sendMsg:(id)msgContent isRecordState:(BOOL)isRecord
-{
-    
-}
 
 - (void)changeHeight:(CGFloat)changeH
 {

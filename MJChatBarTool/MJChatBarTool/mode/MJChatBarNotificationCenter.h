@@ -11,6 +11,8 @@
 extern NSString *const MJChatBarRecordSoundNoti;
 extern NSString *const MJChatBarEmojiSambleNoti;
 extern NSString *const MJChatBarEmojiGifNoti;
+extern NSString *const MJChatBarEmojiTextfNoti;
+extern NSString *const MJChatBarEmojiSendfNoti;
 
 #define MJNotificationPostObj(noti,object,infoDict) [MJChatBarNotificationCenter postNoti:noti withObject:object withUserInfo:infoDict]
 

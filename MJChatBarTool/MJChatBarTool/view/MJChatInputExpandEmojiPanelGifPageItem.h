@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GJGCChatInputExpandEmojiPanelGifPageItem : UIView
+@interface MJChatInputExpandEmojiPanelGifPageItem : UIView
 
 @property (nonatomic,strong)NSString *panelIdentifier;
 

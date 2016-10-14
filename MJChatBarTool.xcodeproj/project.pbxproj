@@ -10,6 +10,8 @@
 		9D0C94FD1DAF5FC0002F2DD9 /* MJChatEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C94FC1DAF5FC0002F2DD9 /* MJChatEmojiView.m */; };
 		9D0C95001DAF6867002F2DD9 /* MJChatEmojiBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C94FF1DAF6867002F2DD9 /* MJChatEmojiBar.m */; };
 		9D0C95031DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C95021DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m */; };
+		9D0C95061DAF952F002F2DD9 /* GJGCChatInputExpandEmojiPanelGifPageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C95051DAF952F002F2DD9 /* GJGCChatInputExpandEmojiPanelGifPageItem.m */; };
+		9D0C95091DB07E05002F2DD9 /* MJChatBarNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C95081DB07E05002F2DD9 /* MJChatBarNotificationCenter.m */; };
 		9D2A48431DA8C22E00B38D3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A48421DA8C22E00B38D3A /* main.m */; };
 		9D2A48461DA8C22E00B38D3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A48451DA8C22E00B38D3A /* AppDelegate.m */; };
 		9D2A48491DA8C22E00B38D3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A48481DA8C22E00B38D3A /* ViewController.m */; };
@@ -217,6 +219,10 @@
 		9D0C94FF1DAF6867002F2DD9 /* MJChatEmojiBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChatEmojiBar.m; sourceTree = "<group>"; };
 		9D0C95011DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJhatInputExpandEmojiPanelPageItem.h; sourceTree = "<group>"; };
 		9D0C95021DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJhatInputExpandEmojiPanelPageItem.m; sourceTree = "<group>"; };
+		9D0C95041DAF952F002F2DD9 /* GJGCChatInputExpandEmojiPanelGifPageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GJGCChatInputExpandEmojiPanelGifPageItem.h; sourceTree = "<group>"; };
+		9D0C95051DAF952F002F2DD9 /* GJGCChatInputExpandEmojiPanelGifPageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GJGCChatInputExpandEmojiPanelGifPageItem.m; sourceTree = "<group>"; };
+		9D0C95071DB07E05002F2DD9 /* MJChatBarNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJChatBarNotificationCenter.h; sourceTree = "<group>"; };
+		9D0C95081DB07E05002F2DD9 /* MJChatBarNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChatBarNotificationCenter.m; sourceTree = "<group>"; };
 		9D2A483E1DA8C22E00B38D3A /* MJChatBarTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJChatBarTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2A48421DA8C22E00B38D3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9D2A48441DA8C22E00B38D3A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -537,6 +543,8 @@
 				9D2A49E51DAC7FA800B38D3A /* MJCoreTextAttributeStringStyle.m */,
 				9D2A49E71DAC830000B38D3A /* MJCoreTextParagraphStyle.h */,
 				9D2A49E81DAC830000B38D3A /* MJCoreTextParagraphStyle.m */,
+				9D0C95071DB07E05002F2DD9 /* MJChatBarNotificationCenter.h */,
+				9D0C95081DB07E05002F2DD9 /* MJChatBarNotificationCenter.m */,
 			);
 			path = mode;
 			sourceTree = "<group>";
@@ -567,6 +575,8 @@
 		9D2A48771DA8C30A00B38D3A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				9D0C95041DAF952F002F2DD9 /* GJGCChatInputExpandEmojiPanelGifPageItem.h */,
+				9D0C95051DAF952F002F2DD9 /* GJGCChatInputExpandEmojiPanelGifPageItem.m */,
 				9D0C95011DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.h */,
 				9D0C95021DAF8C69002F2DD9 /* MJhatInputExpandEmojiPanelPageItem.m */,
 				9D2A48841DA8E1F100B38D3A /* MJChatInputItem.h */,
@@ -1071,6 +1081,7 @@
 				9D2A49C51DAB355F00B38D3A /* MJChatAudioRecord.m in Sources */,
 				9D2A49C81DAB362900B38D3A /* MJChatAudioRecordSetting.m in Sources */,
 				9D2A48461DA8C22E00B38D3A /* AppDelegate.m in Sources */,
+				9D0C95061DAF952F002F2DD9 /* GJGCChatInputExpandEmojiPanelGifPageItem.m in Sources */,
 				9D0C95001DAF6867002F2DD9 /* MJChatEmojiBar.m in Sources */,
 				9D2A48861DA8E1F100B38D3A /* MJChatInputItem.m in Sources */,
 				9D0C94FD1DAF5FC0002F2DD9 /* MJChatEmojiView.m in Sources */,
@@ -1078,6 +1089,7 @@
 				9D2A49D71DAC724800B38D3A /* MJChatInputRecordAudioTipView.m in Sources */,
 				9D2A487A1DA8C33A00B38D3A /* MJChatBarToolModel.m in Sources */,
 				9D2A49FC1DAC8B1C00B38D3A /* MJTextFrame.m in Sources */,
+				9D0C95091DB07E05002F2DD9 /* MJChatBarNotificationCenter.m in Sources */,
 				9D2A49E61DAC7FA800B38D3A /* MJCoreTextAttributeStringStyle.m in Sources */,
 				9D2A48431DA8C22E00B38D3A /* main.m in Sources */,
 				9D2A48801DA8C84100B38D3A /* MJChatBarToolView.m in Sources */,

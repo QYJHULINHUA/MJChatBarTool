@@ -29,6 +29,8 @@
         _inputBar.delegate = self;
         [self addSubview:self.inputBar];
         [self regestObserver];//注册相关通知
+        _indentifiName = [MJChatBarToolModel currentTimeStamp];
+        _inputBar.indentifiName = _indentifiName;
         
         
         
@@ -41,6 +43,7 @@
     if (!_emojiView) {
         _emojiView = [[MJChatEmojiView alloc] initWithFrame:CGRectMake(0, 0, GJCFSystemScreenWidth, 216)];
         _emojiView.hidden = YES;
+        _emojiView.indentifiName = _indentifiName;
         [self addSubview:_emojiView];
         
     }

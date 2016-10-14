@@ -9,6 +9,7 @@
 #import "MJChatInput_TextView.h"
 #import "MJChatAudioRecordModel.h"
 #import "MJChatInputRecordAudioTipView.h"
+#import "MJChatBarNotificationCenter.h"
 
 
 #define kTextInsetX 2
@@ -59,6 +60,82 @@
 - (void)initParam//初始化参数
 {
     _recordState = NO;
+}
+
+- (void)setIndentifiName:(NSString *)indentifiName
+{
+    _indentifiName = indentifiName;
+    NSString *simbleEmojiNoti = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiSambleNoti formateWihtIndentifier:indentifiName];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeEmojiPanelChooseEmojiNoti:) name:simbleEmojiNoti object:nil];
+    
+}
+
+- (void)deleteLastEmoji
+{
+//    if(GJCFStringIsNull(self.textView.text))
+//    {
+//        return;
+//    }
+//    
+//    if ([[self.textView.text substringFromIndex:self.textView.text.length-1] isEqualToString:@"]"]) {
+//        
+//        NSInteger lastCharCursor = self.textView.text.length - 1;
+//        
+//        NSInteger innerCharCount = 0;
+//        while (lastCharCursor >= 0) {
+//            
+//            NSString * lastChar = [self.textView.text substringWithRange:NSMakeRange(lastCharCursor, 1)];
+//            
+//            if ([lastChar isEqualToString:@"["]) {
+//                
+//                break;
+//                
+//            }
+//            lastCharCursor--;
+//            innerCharCount ++;
+//        }
+//        
+//        if (innerCharCount > 4) {
+//            
+//            [self.textView deleteBackward];
+//            
+//            NSString *formateNoti = [GJGCChatInputConst panelNoti:GJGCChatInputTextViewContentChangeNoti formateWithIdentifier:self.panelIdentifier];
+//            [GJCFNotificationCenter postNotificationName:formateNoti object:self.textView.text];
+//            
+//            return;
+//        }
+//        
+//        self.textView.text = [self.textView.text substringToIndex:lastCharCursor];
+//        
+//        NSString *formateNoti = [GJGCChatInputConst panelNoti:GJGCChatInputTextViewContentChangeNoti formateWithIdentifier:self.panelIdentifier];
+//        [GJCFNotificationCenter postNotificationName:formateNoti object:self.textView.text];
+//        
+//    }else{
+//        
+//        [self.textView deleteBackward];
+//        
+//        NSString *formateNoti = [GJGCChatInputConst panelNoti:GJGCChatInputTextViewContentChangeNoti formateWithIdentifier:self.panelIdentifier];
+//        [GJCFNotificationCenter postNotificationName:formateNoti object:self.textView.text];
+//        
+//    }
+}
+
+- (void)observeEmojiPanelChooseEmojiNoti:(NSNotification *)noti
+{
+    NSString *emoji = noti.object;
+    if ([emoji isEqualToString:@"删除"]) {
+        [self deleteLastEmoji];
+    }else
+    {
+       inputTextView.text = [NSString stringWithFormat:@"%@%@",inputTextView.text,emoji];
+    }
+    
+    [self updateTextView:inputTextView];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)initSubviewsWithFrame:(CGRect)frame

@@ -10,6 +10,12 @@
 
 #import "MJChatBarToolModel.h"
 
+@protocol  MJChatEmojiBardelegate <NSObject>
+
+- (void)loadEmojisWithSourceItem;
+
+@end
+
 @interface MJEmogjiStyleModel : NSObject
 
 @property (nonatomic , strong)NSString *emojiIconName;//表情图标
@@ -33,5 +39,7 @@
 @property (nonatomic,strong)NSArray *itemSourceArray;
 
 @property (nonatomic ,strong , readonly)MJEmogjiStyleModel *emojiModel;
+
+@property (nonatomic , weak)id<MJChatEmojiBardelegate>delegate;
 
 @end

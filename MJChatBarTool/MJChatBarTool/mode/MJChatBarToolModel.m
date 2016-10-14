@@ -113,6 +113,15 @@
     
 }
 
++ (NSString *)currentTimeStamp
+{
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970] * 1000000;
+    
+    NSString *timeString = [NSString stringWithFormat:@"%1.f",interval];
+    
+    return timeString;
+}
+
 + (NSString *)mainBundlePath:(NSString*)fileName
 {
     if ([self stringIsNull:fileName]) {

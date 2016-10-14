@@ -7,6 +7,7 @@
 //
 
 #import "MJhatInputExpandEmojiPanelPageItem.h"
+#import "MJChatBarNotificationCenter.h"
 
 #define GJCFSystemScreenWidth [UIScreen mainScreen].bounds.size.width //获取屏幕的宽度
 #define GJCFSystemScreenHeight [UIScreen mainScreen].bounds.size.height //获取屏幕的高度
@@ -92,22 +93,14 @@
 
 - (void)tapOnEmojiButton:(UIButton *)emojiButton
 {
-//    NSInteger index = emojiButton.tag - GJGCChatInputExpandEmojiPanelPageItemSubIconTag;
-//    
-//    if (index == self.emojiNamesArray.count - 1) {
-//        
-//        NSString *formateNoti = [GJGCChatInputConst panelNoti:GJGCChatInputExpandEmojiPanelChooseDeleteNoti formateWithIdentifier:self.panelIdentifier];
-//        
-//        GJCFNotificationPost(formateNoti);
-//        return;
-//    }
-//    
-//    if (index != self.emojiNamesArray.count - 1) {
-//        NSDictionary *item = [self.emojiNamesArray objectAtIndex:index];
-//        NSString *emoji = [[item allKeys]firstObject];
-//        NSString *formateNoti = [GJGCChatInputConst panelNoti:GJGCChatInputExpandEmojiPanelChooseEmojiNoti formateWithIdentifier:self.panelIdentifier];
-//        GJCFNotificationPostObj(formateNoti, emoji);
-//    }
+    NSInteger index = emojiButton.tag - GJGCChatInputExpandEmojiPanelPageItemSubIconTag;
+    if (index > self.emojiNamesArray.count - 1) {
+        return;
+    }
+    NSDictionary *item = [self.emojiNamesArray objectAtIndex:index];
+    NSString *emoji = [[item allKeys]firstObject];
+    NSString *notifiString = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiSambleNoti formateWihtIndentifier:self.indentifiName];
+    MJNotificationPostObj(notifiString, emoji, nil);
 }
 
 @end

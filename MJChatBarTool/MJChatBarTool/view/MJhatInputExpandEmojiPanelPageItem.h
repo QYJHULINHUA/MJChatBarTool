@@ -10,7 +10,7 @@
 
 @interface MJhatInputExpandEmojiPanelPageItem : UIView
 
-@property (nonatomic,strong)NSString *panelIdentifier;
+@property (nonatomic , copy)NSString *indentifiName;//唯一标识
 
 - (instancetype)initWithFrame:(CGRect)frame withEmojiNameArray:(NSArray *)emojiArray;
 

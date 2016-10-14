@@ -64,4 +64,6 @@ typedef NS_ENUM(NSUInteger, MJChatInputExpandEmojiType) {
 
 + (NSString *)mainBundlePath:(NSString*)fileName;
 
++ (NSString *)currentTimeStamp;
+
 @end

@@ -66,6 +66,13 @@
     self.backgroundColor = [MJChatBarToolModel colorFromHexString:@"f3f3f3"];
 }
 
+- (void)setIndentifiName:(NSString *)indentifiName
+{
+    _indentifiName = indentifiName;
+    _inputTextView.indentifiName = _indentifiName;
+    
+}
+
 /**
  * 初始化视图元素
  */

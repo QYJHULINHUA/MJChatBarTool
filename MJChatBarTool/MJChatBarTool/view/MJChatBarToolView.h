@@ -23,6 +23,8 @@
 
 - (void)cancleInputState;//取消任何形式的输入状态
 
+@property (nonatomic , copy)NSString *indentifiName;//唯一标识
+
 
 
 @end

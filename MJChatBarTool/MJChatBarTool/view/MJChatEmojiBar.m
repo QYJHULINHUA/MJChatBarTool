@@ -41,6 +41,7 @@
         
         MJEmogjiStyleModel *sourceItem = [sourceArray objectAtIndex:index];
         UIButton *item = [[UIButton alloc] initWithFrame:CGRectMake(marginX, marginY, itemWidth, itemHeight)];
+        item.tag = 98 + index;
         [item setImage:[UIImage imageNamed:sourceItem.emojiIconName] forState:normal];
         item.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:item];
@@ -62,8 +63,13 @@
 
 - (void)tapOnBarItem:(UIButton *)tapR
 {
-    
-    
+    if (_seletedIndex == tapR.tag - 98) {
+        return;
+    }
+    _seletedIndex = tapR.tag - 98;
+    if ([self.delegate respondsToSelector:@selector(loadEmojisWithSourceItem)]) {
+        [self.delegate loadEmojisWithSourceItem];
+    }
 }
 
 - (NSArray*)itemSourceArray

@@ -10,8 +10,9 @@
 #import "MJChatBarToolModel.h"
 #import "MJChatEmojiBar.h"
 #import "MJhatInputExpandEmojiPanelPageItem.h"
+#import "GJGCChatInputExpandEmojiPanelGifPageItem.h"
 
-@interface MJChatEmojiView ()<UIScrollViewDelegate>
+@interface MJChatEmojiView ()<UIScrollViewDelegate,MJChatEmojiBardelegate>
 
 @property (nonatomic , strong)UIScrollView *scrollView;
 @property (nonatomic , strong)UIPageControl *pageControl;
@@ -27,6 +28,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
         _scrollView = [self getScrollViewWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 70)];
         [self addSubview:_scrollView];
         
@@ -40,6 +43,7 @@
         [self addSubview:bottomBarBack];
         
         _emojiBar = [[MJChatEmojiBar alloc] init];
+        _emojiBar.delegate = self;
         [bottomBarBack addSubview:_emojiBar];
         
         UIImageView *seprateLine = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, GJCFSystemScreenWidth, 0.5)];
@@ -48,10 +52,20 @@
         
         _sendButton = [self getSendButtonWihtFrame:CGRectMake(frame.size.width - 72 ,0.5, 72, 40)];
         [bottomBarBack addSubview:_sendButton];
-        [self loadDataFromEmojiBar];
+        
+
+        
     }
     return self;
 }
+
+- (void)setIndentifiName:(NSString *)indentifiName
+{
+    _indentifiName = indentifiName;
+    [self loadEmojisWithSourceItem];
+}
+
+
 
 - (UIScrollView *)getScrollViewWithFrame:(CGRect)frame
 {
@@ -94,12 +108,45 @@
     
 }
 
-- (void)loadDataFromEmojiBar
+- (void)loadGifEmojisWithListPath:(NSString *)listPath
 {
-    MJEmogjiStyleModel *model = _emojiBar.emojiModel;
-    if (!model.emojiArr) {
-        model.emojiArr = [NSArray arrayWithContentsOfFile:model.emojiListFilePath];
+    NSArray *emojiArray = [NSArray arrayWithContentsOfFile:listPath];
+    
+    NSInteger pageItemCount = 8;
+    
+    /* 分割页面 */
+    NSMutableArray *pagesArray = [NSMutableArray array];
+    
+    self.pageCount = emojiArray.count%pageItemCount == 0? emojiArray.count/pageItemCount:emojiArray.count/pageItemCount+1;
+    self.pageControl.numberOfPages = self.pageCount;
+    
+    for (int i = 0; i < self.pageCount; i++) {
+        
+        NSMutableArray *pageItemArray = [NSMutableArray array];
+        
+        [pageItemArray addObjectsFromArray:[emojiArray subarrayWithRange:NSMakeRange(i*pageItemCount,pageItemCount)]];
+        
+        [pagesArray addObject:pageItemArray];
     }
+    
+    /* 创建 */
+    for (int i = 0; i < pagesArray.count ; i++) {
+        
+        NSArray *pageNamesArray = [pagesArray objectAtIndex:i];
+        
+        GJGCChatInputExpandEmojiPanelGifPageItem  *pageItem = [[GJGCChatInputExpandEmojiPanelGifPageItem alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) withEmojiNameArray:pageNamesArray];
+        pageItem.panelIdentifier = _indentifiName;
+        pageItem.panelView = self.superview;
+        [self.scrollView addSubview:pageItem];
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(self.pageCount * GJCFSystemScreenWidth, self.scrollView.frame.size.height);
+    
+}
+
+- (void)loadDataFromEmojiBarEmojiTypeSimple:(MJEmogjiStyleModel *)model
+{
+    
     NSInteger pageItemCount = 20;
     /* 分割页面 */
     NSMutableArray *pagesArray = [NSMutableArray array];
@@ -127,11 +174,58 @@
         NSArray *pageNamesArray = [pagesArray objectAtIndex:i];
         
         MJhatInputExpandEmojiPanelPageItem *pageItem = [[MJhatInputExpandEmojiPanelPageItem alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) withEmojiNameArray:pageNamesArray];
+        pageItem.indentifiName = _indentifiName;
         [self.scrollView addSubview:pageItem];
     }
     
     self.scrollView.contentSize = CGSizeMake(self.pageCount * GJCFSystemScreenWidth, self.scrollView.frame.size.height);
 }
+
+
+- (void)loadEmojisWithSourceItem
+{
+   
+    MJEmogjiStyleModel *item = _emojiBar.emojiModel;
+    if (!item.emojiArr) {
+        item.emojiArr = [NSArray arrayWithContentsOfFile:item.emojiListFilePath];
+    }
+    
+    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.pageControl.currentPage = 0;
+    CGRect visiableRect = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    [self.scrollView scrollRectToVisible:visiableRect animated:NO];
+    
+    self.sendButton.hidden = !item.isNeedShowSendButton;
+
+    
+    
+    switch (item.emojiType) {
+        case MJCChatInputExpandEmojiTypeSimple:
+        {
+            
+            [self loadDataFromEmojiBarEmojiTypeSimple:item];
+        }
+            break;
+        case MJCChatInputExpandEmojiTypeGIF:
+        {
+            [self loadGifEmojisWithListPath:item.emojiListFilePath];
+        }
+            break;
+        case MJCChatInputExpandEmojiTypeMyFavorit:
+        {
+            
+        }
+            break;
+        case MJCChatInputExpandEmojiTypeFindFunGif:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 
 - (void)sendEmojiAction
 {

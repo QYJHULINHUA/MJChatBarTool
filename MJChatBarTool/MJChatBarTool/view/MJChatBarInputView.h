@@ -20,6 +20,8 @@
 
 @interface MJChatBarInputView : UIView
 
+@property (nonatomic , copy)NSString *indentifiName;//唯一标识
+
 @property (nonatomic , assign)CGFloat barHeight;
 
 @property (nonatomic , assign)MJChatBarActionType actionType;//当前输入框类型

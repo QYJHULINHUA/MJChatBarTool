@@ -23,6 +23,8 @@
 
 @interface MJChatInput_TextView : UIView
 
+@property (nonatomic , copy)NSString *indentifiName;//唯一标识
+
 @property (nonatomic , strong)MJChatAudioRecord *audioRecord;
 
 @property (nonatomic , strong)NSString *preRecordTitle;//准备录音时候的标题

@@ -10,4 +10,7 @@
 
 @interface MJChatEmojiView : UIView
 
+@property (nonatomic , copy)NSString *indentifiName;//唯一标识
+
+
 @end

@@ -319,8 +319,6 @@
         inputTextView.hidden = NO;
         recordButton.hidden = YES;
     }
-    
-    
 }
 
 - (CGFloat) heightForString:(UITextView *)textView andWidth:(float)width{

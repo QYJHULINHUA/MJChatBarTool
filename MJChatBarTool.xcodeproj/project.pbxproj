@@ -193,6 +193,7 @@
 		9D2A49FA1DAC8B1C00B38D3A /* MJCoreTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A49F51DAC8B1C00B38D3A /* MJCoreTextLine.m */; };
 		9D2A49FB1DAC8B1C00B38D3A /* MJCoreTextRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A49F71DAC8B1C00B38D3A /* MJCoreTextRun.m */; };
 		9D2A49FC1DAC8B1C00B38D3A /* MJTextFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A49F91DAC8B1C00B38D3A /* MJTextFrame.m */; };
+		9DCD196F1DB0A9CF00296C1D /* 090[吓]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DCD196E1DB0A9CF00296C1D /* 090[吓]@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -426,6 +427,7 @@
 		9D2A49F71DAC8B1C00B38D3A /* MJCoreTextRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJCoreTextRun.m; sourceTree = "<group>"; };
 		9D2A49F81DAC8B1C00B38D3A /* MJTextFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTextFrame.h; sourceTree = "<group>"; };
 		9D2A49F91DAC8B1C00B38D3A /* MJTextFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTextFrame.m; sourceTree = "<group>"; };
+		9DCD196E1DB0A9CF00296C1D /* 090[吓]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "090[吓]@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -689,6 +691,7 @@
 				9D2A48F61DA8E6F800B38D3A /* 085[骷髅头]@2x.png */,
 				9D2A48F71DA8E6F800B38D3A /* 086[再见]@2x.png */,
 				9D2A48F81DA8E6F800B38D3A /* 087[擦汗]@2x.png */,
+				9DCD196E1DB0A9CF00296C1D /* 090[吓]@2x.png */,
 				9D2A48F91DA8E6F800B38D3A /* 092[菜刀]@2x.png */,
 				9D2A48FA1DA8E6F800B38D3A /* 093[拳头]@2x.png */,
 				9D2A48FB1DA8E6F800B38D3A /* 094[差劲]@2x.png */,
@@ -919,6 +922,7 @@
 				9D2A49321DA8E6F800B38D3A /* 001[憨笑]@2x.png in Resources */,
 				9D2A49A51DA8E6F800B38D3A /* 你牛@2x.png in Resources */,
 				9D2A499C1DA8E6F800B38D3A /* emojiName.plist in Resources */,
+				9DCD196F1DB0A9CF00296C1D /* 090[吓]@2x.png in Resources */,
 				9D2A49A01DA8E6F800B38D3A /* gifEmoji.plist in Resources */,
 				9D2A497C1DA8E6F800B38D3A /* 074[西瓜]@2x.png in Resources */,
 				9D2A49B21DA8E6F800B38D3A /* 汗.gif in Resources */,

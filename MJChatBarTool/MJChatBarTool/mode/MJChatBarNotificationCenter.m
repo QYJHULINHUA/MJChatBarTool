@@ -12,6 +12,8 @@
 NSString *const MJChatBarRecordSoundNoti = @"MJChatBarRecordSoundNoti"; //发送语音通知
 NSString *const MJChatBarEmojiSambleNoti = @"MJChatBarEmojiSambleNoti"; //发送简单表情通知
 NSString *const MJChatBarEmojiGifNoti    = @"MJChatBarEmojiGifNoti";    //发送gif表情通知
+NSString *const MJChatBarEmojiTextfNoti    = @"MJChatBarEmojiTextfNoti";    //发送text表情通知
+NSString *const MJChatBarEmojiSendfNoti    = @"MJChatBarEmojiSendfNoti";    //点击发送按钮通知
 
 @implementation MJChatBarNotificationCenter
 

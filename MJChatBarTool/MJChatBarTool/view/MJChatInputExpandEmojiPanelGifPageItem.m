@@ -6,13 +6,15 @@
 //  Copyright (c) 2015年 ZYProSoft.  QQ群:219357847  All rights reserved.
 //
 
-#import "GJGCChatInputExpandEmojiPanelGifPageItem.h"
+#import "MJChatInputExpandEmojiPanelGifPageItem.h"
+#import "MJChatBarNotificationCenter.h"
 
 #define GJCFSystemScreenWidth [UIScreen mainScreen].bounds.size.width //获取屏幕的宽度
 #define GJCFSystemScreenHeight [UIScreen mainScreen].bounds.size.height //获取屏幕的高度
 #define GJGCChatInputExpandEmojiPanelPageItemSubIconTag 3987652
 
-@interface GJGCChatInputExpandEmojiPanelGifPageItem ()
+@interface MJChatInputExpandEmojiPanelGifPageItem ()
+
 
 @property (nonatomic,strong)NSMutableArray *emojiNamesArray;
 
@@ -25,7 +27,7 @@
 
 @end
 
-@implementation GJGCChatInputExpandEmojiPanelGifPageItem
+@implementation MJChatInputExpandEmojiPanelGifPageItem
 
 - (instancetype)init
 {
@@ -60,6 +62,7 @@
         
         NSString *iconName = [emojiArray objectAtIndex:i];
         UIButton *gifEmojiButton = [[UIButton alloc] initWithFrame:CGRectMake(cloumnIndex*emojiWidth, (rowIndex+1)*emojiMarginY + rowIndex*emojiHeight, emojiWidth, emojiHeight)];
+        gifEmojiButton.titleLabel.text = iconName;
         [gifEmojiButton setImage:[UIImage imageNamed:iconName] forState:normal];
         [gifEmojiButton addTarget:self action:@selector(tapOnEmojiButton:) forControlEvents:UIControlEventTouchUpInside];
         gifEmojiButton.tag = GJGCChatInputExpandEmojiPanelPageItemSubIconTag + i;
@@ -71,7 +74,9 @@
 
 - (void)tapOnEmojiButton:(UIButton *)tapR
 {
-   
+    NSString *emoji = tapR.titleLabel.text;
+    NSString *notifiString = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiGifNoti formateWihtIndentifier:_panelIdentifier];
+    MJNotificationPostObj(notifiString, emoji, nil);
 }
 
 

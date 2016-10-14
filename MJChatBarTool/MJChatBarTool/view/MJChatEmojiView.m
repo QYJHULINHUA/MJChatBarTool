@@ -10,7 +10,8 @@
 #import "MJChatBarToolModel.h"
 #import "MJChatEmojiBar.h"
 #import "MJhatInputExpandEmojiPanelPageItem.h"
-#import "GJGCChatInputExpandEmojiPanelGifPageItem.h"
+#import "MJChatInputExpandEmojiPanelGifPageItem.h"
+#import "MJChatBarNotificationCenter.h"
 
 @interface MJChatEmojiView ()<UIScrollViewDelegate,MJChatEmojiBardelegate>
 
@@ -134,7 +135,7 @@
         
         NSArray *pageNamesArray = [pagesArray objectAtIndex:i];
         
-        GJGCChatInputExpandEmojiPanelGifPageItem  *pageItem = [[GJGCChatInputExpandEmojiPanelGifPageItem alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) withEmojiNameArray:pageNamesArray];
+        MJChatInputExpandEmojiPanelGifPageItem  *pageItem = [[MJChatInputExpandEmojiPanelGifPageItem alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) withEmojiNameArray:pageNamesArray];
         pageItem.panelIdentifier = _indentifiName;
         pageItem.panelView = self.superview;
         [self.scrollView addSubview:pageItem];
@@ -229,7 +230,8 @@
 
 - (void)sendEmojiAction
 {
-    
+    NSString *notifName = [MJChatBarNotificationCenter getNofitName:MJChatBarEmojiSendfNoti formateWihtIndentifier:_indentifiName];
+    MJNotificationPostObj(notifName, @"MJ_发送", nil);
 }
 
 - (void)pageIndexChange:(UIPageControl *)pageControl
